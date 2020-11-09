@@ -33,6 +33,7 @@ class FaceImageView: UIView {
         setupView()
     }
     
+    
     func setImage(named: String) {
         faceImage.image = UIImage(named: named)
         setNeedsDisplay()

@@ -9,21 +9,20 @@ class PhotoController: UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-            
-            namePhotos.append("\(idFriend! as Int)")
-            var i = 0
-            var namePhoto: String = ""
-            while true {
-                namePhoto = "\(idFriend! as Int)-\(i)"
-                if UIImage(named: namePhoto) != nil {
-                    namePhotos.append(namePhoto)
-                    print(namePhoto)
-                    i += 1
-                }
-                else {
-                    break
-                }
+        namePhotos.append("\(idFriend! as Int)")
+        var i = 0
+        var namePhoto: String = ""
+        while true {
+            namePhoto = "\(idFriend! as Int)-\(i)"
+            if UIImage(named: namePhoto) != nil {
+                namePhotos.append(namePhoto)
+                print(namePhoto)
+                i += 1
             }
+            else {
+                break
+            }
+    }
         
         //}
         // Uncomment the following line to preserve selection between presentations
