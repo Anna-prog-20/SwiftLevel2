@@ -2,9 +2,15 @@ import UIKit
 
 class CheckILike: UIStackView {
 
+    enum Liked {
+        case like
+        case dislike
+    }
+    
     private var buttonLike = UIButton()
     private var lableCountLike = UILabel()
-    var countLike = 0 
+    var liked: Liked = .dislike
+    var countLike = 0
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -26,15 +32,17 @@ class CheckILike: UIStackView {
     }
     
     @objc func buttonLikeTapped(button: UIButton) {
-        if ((countLike % 2) == 0) {
+        if (liked == .dislike) {
             changeImageLike(nameImage: "imageLike")
             countLike = countLike + 1
             lableCountLike.textColor = .red
+            liked = .like
         }
         else {
             changeImageLike(nameImage: "imageNotLike")
             countLike = countLike - 1
             lableCountLike.textColor = .gray
+            liked = .dislike
         }
         lableCountLike.text = "\(countLike)"
     }

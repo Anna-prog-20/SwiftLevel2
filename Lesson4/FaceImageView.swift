@@ -55,7 +55,7 @@ class FaceImageView: UIView {
     }
     
     private func translation() {
-        transform = CGAffineTransform(translationX: 0, y: 5)
+        transform = CGAffineTransform(translationX: 0, y: 3)
     }
     
     override func draw(_ rect: CGRect) {

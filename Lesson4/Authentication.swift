@@ -9,7 +9,6 @@ class Authentication: UIViewController {
     @IBAction func comeIn(_ sender: Any) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: "home")
-        //println("Нажал")
         if authentication(login: login.text, password: password.text) {
             self.navigationController?.pushViewController(viewController, animated: true)
         }

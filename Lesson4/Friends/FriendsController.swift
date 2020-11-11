@@ -2,7 +2,9 @@ import UIKit
 
 class FriendsController: UITableViewController {
     
-    var friends = [
+    var symbolControl: SymbolControl!
+    
+    var friendsName = [
             "Bob",
             "Sara",
             "Koly",
@@ -10,69 +12,71 @@ class FriendsController: UITableViewController {
             "Any",
             "Alex"
         ]
-    var groupFriend: [String] = []
-    var countFriendInGroup: [Int] = []
-    var index = 0
+    
+    var friends: [User] = []
+    var groupSymbol: [GroupSymbol] = []
     
     var idFriend: Int!
     var seguePhoto: PhotoController!
     
+    func fillData() {
+        friendsName.sort()
+        for i in 0...friendsName.count - 1 {
+            let user = User(id: i, name: friendsName[i])
+            friends.append(user)
+        }
+    }
+    
     override func viewDidLoad() {
+        fillData()
         writeGroupFriend()
+        //symbolControl.groupSymbol = groupSymbol
+        symbolControl = SymbolControl.init(frame: CGRect(x: view.frame.maxX - 20, y: 0, width: 20, height: view.frame.height),groupSymbol: groupSymbol)
+        
+        symbolControl.isUserInteractionEnabled = true
+        view.addSubview(symbolControl)
+    }
+    
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        symbolControl.frame = CGRect.init(x: symbolControl.frame.origin.x, y: scrollView.contentOffset.y + 120, width: symbolControl.frame.width, height: symbolControl.frame.height)
     }
     
     func writeGroupFriend() {
         var i = 0
-        friends.sort()
+        var k = 0
         var firstSymbol = ""
         for friend in friends {
-            if firstSymbol != String(friend[friend.startIndex]) {
-                groupFriend.append(String(friend[friend.startIndex]))
-                countFriendInGroup.append(groupFriend.count - i)
+            let nameFriend = friend.name
+            let friendSymbol = String(nameFriend[nameFriend.startIndex])
+            if firstSymbol != friendSymbol {
+                k = i
+                groupSymbol.append(GroupSymbol(id: i, name: friendSymbol))
+                groupSymbol[i].users.append(friend)
                 i = i + 1
             }
             else {
-                countFriendInGroup[i-1] = countFriendInGroup[i-1] + 1
+                groupSymbol[k].users.append(friend)
             }
-            firstSymbol = String(friend[friend.startIndex])
+            firstSymbol = friendSymbol
         }
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        var i = 0
-        let cell = tableView.cellForRow(at: indexPath) as!  FriendsCell
-        let nameFriend = cell.nameFriend.text
-        i = searchIndexSelectFriend(nameFriend: nameFriend!)
-        idFriend = i
+        idFriend = groupSymbol[indexPath.section].users[indexPath.row].id
         seguePhoto.idFriend = idFriend
     }
     
-    func searchIndexSelectFriend(nameFriend: String) -> Int{
-        var i = 0
-        for k in 0...friends.count - 1 {
-           if friends[k] != nameFriend {
-                i = i + 1
-            }
-            else {
-                break
-            }
-        }
-        return i
-    }
-    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return countFriendInGroup[section]
+        return groupSymbol[section].users.count
     }
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
          
         let cell = tableView.dequeueReusableCell(withIdentifier: "Friend", for: indexPath) as! FriendsCell
-        friends.sort()
-        let friend = friends[index]
-        cell.nameFriend.text = friend
-        cell.faceImage.setImage(named: "\(index)")
-        index = index + 1
+        let friend = groupSymbol[indexPath.section].users[indexPath.row]
+        cell.nameFriend.text = friend.name
+        cell.faceImage.setImage(named: "\(friend.id)")
         return cell
     }
     
@@ -83,11 +87,11 @@ class FriendsController: UITableViewController {
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return groupFriend.count
+        return groupSymbol.count
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-            return "\(groupFriend[section])"
+        return "\(groupSymbol[section].name)"
         }
     
 }
