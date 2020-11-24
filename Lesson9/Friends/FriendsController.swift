@@ -21,8 +21,7 @@ class FriendsController: UITableViewController, UISearchBarDelegate{
     var groupSymbol: [GroupSymbol] = []
     var filteredData: [User]!
     
-    var idFriend: Int!
-    var seguePhoto: PhotoController!
+    private var idFriend: Int!
     private let headerID = String(describing: HeaderSection.self)
     
     func fillData() {
@@ -85,8 +84,10 @@ class FriendsController: UITableViewController, UISearchBarDelegate{
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         idFriend = groupSymbol[indexPath.section].users[indexPath.row].id
-        seguePhoto.idFriend = idFriend
-        
+        let photoController = self.storyboard?.instantiateViewController(withIdentifier: "Photo") as! PhotoController
+        photoController.setIdFriend(idFriend: idFriend)
+        navigationController?.pushViewController(photoController, animated: true)
+        //show(photoController, sender: self)
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -107,12 +108,6 @@ class FriendsController: UITableViewController, UISearchBarDelegate{
 //            cell.alpha = 1
 //        })
         return cell
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "idFriend" {
-           seguePhoto = segue.destination as? PhotoController
-        }
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {

@@ -5,6 +5,8 @@ class GroupsController: UITableViewController, UISearchBarDelegate {
     @IBOutlet var tableGroups: UITableView!
     @IBOutlet weak var searchGroup: UISearchBar!
     
+    weak var delegate: DelegateGroup?
+    
     var groupsName = [
             "Group1",
             "Group2",
@@ -12,6 +14,14 @@ class GroupsController: UITableViewController, UISearchBarDelegate {
         ]
     var groups: [Group] = []
     var filteredData: [Group]!
+    
+    override init(style: UITableView.Style) {
+        super.init(style: style)
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,6 +52,18 @@ class GroupsController: UITableViewController, UISearchBarDelegate {
         cell.faceImage.setImage(named: "gr\(indexPath.row)")
         
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
+        if let myDelegate = navigationController?.viewControllers[0] as? MyGroupsController {
+            delegate = myDelegate
+        }
+        
+        let group = self.filteredData[indexPath.row]
+        delegate?.update(group: group)
+        
+        navigationController?.popViewController(animated: true)
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {

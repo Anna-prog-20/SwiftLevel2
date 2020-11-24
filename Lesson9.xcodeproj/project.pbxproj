@@ -44,6 +44,7 @@
 		959B94002542A32F00F319EF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 959B93FE2542A32F00F319EF /* LaunchScreen.storyboard */; };
 		959B942D2542D1F100F319EF /* FriendsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 959B942C2542D1F100F319EF /* FriendsController.swift */; };
 		95A6539325494DE20020197E /* GroupsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A6539225494DE20020197E /* GroupsController.swift */; };
+		95D026CE256CE0D700E94F0F /* DelegateGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D026CD256CE0D700E94F0F /* DelegateGroup.swift */; };
 		95D322C62552DA4900C3670A /* CheckILike.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D322C52552DA4900C3670A /* CheckILike.swift */; };
 		95D322CE2553008300C3670A /* CheckLikeControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95D322CD2553008300C3670A /* CheckLikeControl.swift */; };
 		95E4383825524E3800A5F681 /* FaceImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E4383725524E3800A5F681 /* FaceImageView.swift */; };
@@ -111,6 +112,7 @@
 		959B94112542A32F00F319EF /* Lesson9UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Lesson9UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		959B942C2542D1F100F319EF /* FriendsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsController.swift; sourceTree = "<group>"; };
 		95A6539225494DE20020197E /* GroupsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsController.swift; sourceTree = "<group>"; };
+		95D026CD256CE0D700E94F0F /* DelegateGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DelegateGroup.swift; sourceTree = "<group>"; };
 		95D322C52552DA4900C3670A /* CheckILike.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckILike.swift; sourceTree = "<group>"; };
 		95D322CD2553008300C3670A /* CheckLikeControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckLikeControl.swift; sourceTree = "<group>"; };
 		95E4383725524E3800A5F681 /* FaceImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceImageView.swift; sourceTree = "<group>"; };
@@ -152,6 +154,7 @@
 				950840AA254BE77C003CE190 /* Photo.swift */,
 				95840E17255C17C7008D3414 /* GroupSymbol.swift */,
 				95312B892561704500F884F0 /* News.swift */,
+				95D026CD256CE0D700E94F0F /* DelegateGroup.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -400,6 +403,7 @@
 				95312B8A2561704500F884F0 /* News.swift in Sources */,
 				950840C6254BFC6E003CE190 /* PhotoController.swift in Sources */,
 				959536AB25695AB500284745 /* CustomPopAnimator.swift in Sources */,
+				95D026CE256CE0D700E94F0F /* DelegateGroup.swift in Sources */,
 				9565019B255985B0008A9814 /* SymbolControl.swift in Sources */,
 				95169D89256027600005987A /* NewsController.swift in Sources */,
 				95E54C222563A80D00419303 /* IndicatorView.swift in Sources */,

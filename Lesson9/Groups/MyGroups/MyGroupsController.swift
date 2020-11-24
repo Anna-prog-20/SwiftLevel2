@@ -1,27 +1,25 @@
 import UIKit
 
-class MyGroupsController: UITableViewController {
+class MyGroupsController: UITableViewController, DelegateGroup {
+    
+    func update(group: Group) {
+        let groupFilter = self.groups.filter({
+            (item: Group) -> Bool in
+            return item.name.range(of: group.name, options: .caseInsensitive) != nil
+        })
+        if groupFilter.count <= 0 {
+            self.groups.append(group)
+        }
+    }
     
     var groupsName = [
             "Защита животных"
         ]
     var groups: [Group] = []
     
-    @IBAction func addGroup(segue: UIStoryboardSegue) {
-        if segue.identifier == "addGroup" {
-            let groupsController = segue.source as! GroupsController
-            if let indexPath = groupsController.tableView.indexPathForSelectedRow {
-                let group = groupsController.filteredData[indexPath.row]
-                let groupFilter = groups.filter({
-                    (item: Group) -> Bool in
-                    return item.name.range(of: group.name, options: .caseInsensitive) != nil
-                })
-                if groupFilter.count <= 0 {
-                    groups.append(group)
-                }
-               tableView.reloadData()
-            }
-        }
+    @IBAction func addGroup(_ sender: Any) {
+        let groupsController = self.storyboard?.instantiateViewController(withIdentifier: "GroupsController") as! GroupsController
+        navigationController?.pushViewController(groupsController, animated:true)
     }
     
     func fillData() {
@@ -33,7 +31,6 @@ class MyGroupsController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-            
         let cell = tableView.dequeueReusableCell(withIdentifier: "Group", for: indexPath) as! MyGroupsCell
 
         let group = groups[indexPath.row]
@@ -47,7 +44,7 @@ class MyGroupsController: UITableViewController {
         super.viewDidLoad()
         fillData()
     }
-
+    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -80,26 +77,15 @@ class MyGroupsController: UITableViewController {
         }
     }
 
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
+//    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
+//
+//    }
+   
 
 //    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
 //        // Return false if you do not want the item to be re-orderable.
 //        return true
 //    }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

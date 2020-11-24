@@ -220,7 +220,6 @@
                                 <size key="customSize" width="130" height="130"/>
                                 <connections>
                                     <outlet property="photo" destination="aoh-Cm-MtH" id="xwO-eQ-ccp"/>
-                                    <segue destination="RFW-3O-dLH" kind="show" identifier="photoUser" id="bUX-Qv-hhA"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -246,7 +245,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="pL2-Wr-WcV" customClass="OnePhoto" customModule="Lesson9" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <color key="backgroundColor" red="0.78062017701097042" green="0.95101510503522058" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </view>
                         </subviews>
@@ -271,7 +270,7 @@
         <!--Группы-->
         <scene sceneID="IK3-H9-CdB">
             <objects>
-                <tableViewController title="Группы" id="Rh9-n9-axm" customClass="MyGroupsController" customModule="Lesson9" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="MyGroupsController" title="Группы" id="Rh9-n9-axm" customClass="MyGroupsController" customModule="Lesson9" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="DC8-dU-MWP">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -291,7 +290,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wt8-Hh-lIz" customClass="FaceImageView" customModule="Lesson9" customModuleProvider="target">
-                                            <rect key="frame" x="5" y="0.0" width="35" height="35"/>
+                                            <rect key="frame" x="5" y="3" width="35" height="35"/>
                                             <viewLayoutGuide key="safeArea" id="bKI-jU-py0"/>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             <constraints>
@@ -334,7 +333,7 @@
                         <barButtonItem key="backBarButtonItem" title="Группы" id="tim-Of-RG9"/>
                         <barButtonItem key="rightBarButtonItem" title="Добавить" image="plus.app" catalog="system" id="tBZ-tm-EdX">
                             <connections>
-                                <segue destination="Sgl-Pk-jmz" kind="show" id="73F-NJ-RAF"/>
+                                <action selector="addGroup:" destination="Rh9-n9-axm" id="fUT-9v-rum"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -346,7 +345,7 @@
         <!--Поиск групп-->
         <scene sceneID="QIP-uS-IKa">
             <objects>
-                <tableViewController title="Поиск групп" id="Sgl-Pk-jmz" customClass="GroupsController" customModule="Lesson9" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="GroupsController" title="Поиск групп" id="Sgl-Pk-jmz" customClass="GroupsController" customModule="Lesson9" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="WMQ-Df-nJX">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -371,7 +370,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oua-7e-nBp" customClass="FaceImageView" customModule="Lesson9" customModuleProvider="target">
-                                            <rect key="frame" x="5" y="0.0" width="35" height="35"/>
+                                            <rect key="frame" x="5" y="3" width="35" height="35"/>
                                             <viewLayoutGuide key="safeArea" id="1Cs-Fc-4zX"/>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             <constraints>
@@ -423,7 +422,7 @@
         <!--Группы-->
         <scene sceneID="4CV-Xy-wre">
             <objects>
-                <navigationController storyboardIdentifier="Groups" id="1Xd-Lr-bi0" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="Groups" id="1Xd-Lr-bi0" customClass="CustomNavigationViewController" customModule="Lesson9" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Группы" image="person.3" catalog="system" selectedImage="person.3" id="30z-sx-Rk7"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="1UY-L8-ACN">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -469,7 +468,7 @@
         <!--Новости-->
         <scene sceneID="TFn-z8-Dj6">
             <objects>
-                <navigationController id="tUh-YH-X4X" sceneMemberID="viewController">
+                <navigationController id="tUh-YH-X4X" customClass="CustomNavigationViewController" customModule="Lesson9" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Новости" image="newspaper" catalog="system" selectedImage="newspaper" id="Ntf-gX-VdS"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ljf-p2-omO">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -536,7 +535,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LZm-H7-GFA" customClass="FaceImageView" customModule="Lesson9" customModuleProvider="target">
-                                            <rect key="frame" x="10" y="0.0" width="35" height="35"/>
+                                            <rect key="frame" x="10" y="3" width="35" height="35"/>
                                             <viewLayoutGuide key="safeArea" id="WDO-GB-ntc"/>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             <constraints>
@@ -567,7 +566,6 @@
                                 <connections>
                                     <outlet property="faceImage" destination="LZm-H7-GFA" id="nev-gS-cd8"/>
                                     <outlet property="nameFriend" destination="L7x-l6-rQd" id="3FB-Lf-Zsf"/>
-                                    <segue destination="XWv-Lf-KMn" kind="show" identifier="idFriend" id="lAs-et-glp"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

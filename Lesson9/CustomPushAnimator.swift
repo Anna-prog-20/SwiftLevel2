@@ -1,6 +1,7 @@
 import UIKit
 
 class CustomPushAnimator: NSObject, UIViewControllerAnimatedTransitioning {
+    
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return 1.0
     }

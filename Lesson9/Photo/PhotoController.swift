@@ -2,19 +2,18 @@ import UIKit
 
 class PhotoController: UICollectionViewController {
     
-    var idFriend: Int?
+    private var idFriend: Int = 0
     var namePhotos = [String]()
     
     var photoUser = PhotoUser()
-    var segueOnePhoto: OnePhotoController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        namePhotos.append("\(idFriend! as Int)")
+        namePhotos.append("\(idFriend as Int)")
         var i = 0
         var namePhoto: String = ""
         while true {
-            namePhoto = "\(idFriend! as Int)-\(i)"
+            namePhoto = "\(idFriend as Int)-\(i)"
             if UIImage(named: namePhoto) != nil {
                 namePhotos.append(namePhoto)
                 print(namePhoto)
@@ -26,6 +25,9 @@ class PhotoController: UICollectionViewController {
     }
     }
 
+    func setIdFriend(idFriend: Int) {
+        self.idFriend = idFriend
+    }
     /*
     // MARK: - Navigation
 
@@ -90,13 +92,12 @@ class PhotoController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         photoUser.presentValueId  = indexPath.row
         photoUser.arrayValue = namePhotos
-        segueOnePhoto.photoUser = photoUser
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "photoUser" {
-           segueOnePhoto = segue.destination as? OnePhotoController
-        }
+        let onePhotoController = self.storyboard?.instantiateViewController(withIdentifier: "OnePhotoController") as! OnePhotoController
+        onePhotoController.photoUser = photoUser
+        navigationController?.pushViewController(onePhotoController, animated: true)
+        //show(onePhotoController, sender: self)
+        //segueOnePhoto.photoUser = photoUser
+        //print("рисуем нажали")
     }
 
     

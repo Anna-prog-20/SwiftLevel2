@@ -22,11 +22,13 @@ class CustomInteractiveTransition: UIPercentDrivenInteractiveTransition {
             let translation = recognizer.translation(in: recognizer.view)
             let relativeTranslation = translation.x/(recognizer.view?.bounds.width ?? 1)
             let progress = max(0, min(1, relativeTranslation))
-            print("рисуем \(progress)")
-            self.ended = progress > 0.5
+            self.ended = progress > 0.2
             
             self.update(progress)
         case .ended:
+            self.began = false
+            self.ended ? self.finish() : self.cancel()
+        case .cancelled:
             self.began = false
             self.cancel()
         default:
