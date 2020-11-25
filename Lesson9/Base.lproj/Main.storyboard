@@ -290,7 +290,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wt8-Hh-lIz" customClass="FaceImageView" customModule="Lesson9" customModuleProvider="target">
-                                            <rect key="frame" x="5" y="3" width="35" height="35"/>
+                                            <rect key="frame" x="5" y="0.0" width="35" height="35"/>
                                             <viewLayoutGuide key="safeArea" id="bKI-jU-py0"/>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             <constraints>
@@ -370,7 +370,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oua-7e-nBp" customClass="FaceImageView" customModule="Lesson9" customModuleProvider="target">
-                                            <rect key="frame" x="5" y="3" width="35" height="35"/>
+                                            <rect key="frame" x="5" y="0.0" width="35" height="35"/>
                                             <viewLayoutGuide key="safeArea" id="1Cs-Fc-4zX"/>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             <constraints>
@@ -535,7 +535,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LZm-H7-GFA" customClass="FaceImageView" customModule="Lesson9" customModuleProvider="target">
-                                            <rect key="frame" x="10" y="3" width="35" height="35"/>
+                                            <rect key="frame" x="10" y="0.0" width="35" height="35"/>
                                             <viewLayoutGuide key="safeArea" id="WDO-GB-ntc"/>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             <constraints>

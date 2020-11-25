@@ -1,6 +1,7 @@
 import UIKit
 
-class FriendsController: UITableViewController, UISearchBarDelegate{
+class FriendsController: UITableViewController, UISearchBarDelegate {
+    
     @IBOutlet var tableFriends: UITableView!
     @IBOutlet weak var searchFriend: UISearchBar!
     
@@ -38,17 +39,18 @@ class FriendsController: UITableViewController, UISearchBarDelegate{
         
         fillData()
         filteredData = friends
-        
         writeGroupFriend()
-        
         
         tableView.register(UINib(nibName: headerID, bundle: nil), forHeaderFooterViewReuseIdentifier: headerID)
         symbolControl = SymbolControl.init(frame: CGRect(x: view.frame.maxX - 20, y: 0, width: 20, height: view.frame.height),groupSymbol: groupSymbol)
-        
+        symbolControl.viewController = self
         symbolControl.isUserInteractionEnabled = true
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
         view.addSubview(symbolControl)
-        symbolControl.layer.zPosition = 1
-        
+        clearFormatSelectedCell(row: 0, section: symbolControl.selectedSymbolId)
+        symbolControl.isSelectedButton(selectedSymbolId: symbolControl.selectedSymbolId, isSelected: false)
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -57,7 +59,7 @@ class FriendsController: UITableViewController, UISearchBarDelegate{
         header.textHeader.text = groupSymbol[section].name
         return header
     }
-    
+
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         symbolControl.frame = CGRect.init(x: symbolControl.frame.origin.x, y: scrollView.contentOffset.y + 130, width: symbolControl.frame.width, height: symbolControl.frame.height)
     }
@@ -84,10 +86,17 @@ class FriendsController: UITableViewController, UISearchBarDelegate{
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         idFriend = groupSymbol[indexPath.section].users[indexPath.row].id
+        clearFormatSelectedCell(row: 0, section: symbolControl.selectedSymbolId)
+        symbolControl.isSelectedButton(selectedSymbolId: symbolControl.selectedSymbolId, isSelected: false)
         let photoController = self.storyboard?.instantiateViewController(withIdentifier: "Photo") as! PhotoController
         photoController.setIdFriend(idFriend: idFriend)
         navigationController?.pushViewController(photoController, animated: true)
-        //show(photoController, sender: self)
+    }
+    
+    func clearFormatSelectedCell(row: Int?, section: Int?) {
+        if row != nil,  section != nil {
+            tableView.cellForRow(at: IndexPath(row: row!, section: section!))?.backgroundColor = UIColor.white
+        }
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -100,13 +109,7 @@ class FriendsController: UITableViewController, UISearchBarDelegate{
         let friend = groupSymbol[indexPath.section].users[indexPath.row]
         cell.nameFriend.text = friend.name
         cell.faceImage.setImage(named: "\(friend.id)")
-//        cell.alpha = 0
-//        UITableViewCell.animate(withDuration: 0.5, animations: {
-//            cell.bounds = CGRect(x: cell.bounds.origin.x, y: cell.bounds.origin.y, width: cell.bounds.width + 50, height: cell.bounds.height + 50)
-//        })
-//        UITableViewCell.animate(withDuration: 0.5, animations: {
-//            cell.alpha = 1
-//        })
+        cell.backgroundColor = UIColor.white
         return cell
     }
 

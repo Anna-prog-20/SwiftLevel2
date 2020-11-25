@@ -2,8 +2,9 @@ import UIKit
 
 class SymbolControl: UIControl {
     
-    var groupSymbol: [GroupSymbol] = []
+    var viewController = UIViewController()
     
+    var groupSymbol: [GroupSymbol] = []
     var selectedSymbol: String? {
         didSet {
             updateSelectedSymbol()
@@ -33,11 +34,19 @@ class SymbolControl: UIControl {
     }
     
     @objc private func selectSymbol(_ sender: UIButton) {
+        if let myViewController = (viewController as? FriendsController), selectedSymbolId != nil {
+            myViewController.tableView.cellForRow(at: IndexPath(row: 0, section: selectedSymbolId!))?.backgroundColor = UIColor.white
+        }
         guard let index = self.buttons.firstIndex(of: sender) else {
             return
         }
         self.selectedSymbol = groupSymbol[index].name
         self.selectedSymbolId = index
+        
+        if let myViewController = (viewController as? FriendsController) {
+            myViewController.tableView.scrollToRow(at: IndexPath(row: 0, section: selectedSymbolId!), at: .top, animated: true)
+            myViewController.tableView.cellForRow(at: IndexPath(row: 0, section: selectedSymbolId!))?.backgroundColor = UIColor.green
+        }
     }
     
     private func setupView() {
@@ -58,10 +67,11 @@ class SymbolControl: UIControl {
         self.addSubview(stackView)
         
         stackView.spacing = CGFloat(groupSymbol.count)
-        stackView.frame.size.height = CGFloat(20 * groupSymbol.count)
-        stackView.frame.size.width = 20
+        //stackView.frame.size.height = CGFloat(20 * groupSymbol.count)
+        //stackView.frame.size.width = 20
         stackView.axis = .vertical
         stackView.alignment = .center
+        stackView.distribution = .fillEqually
         stackView.translatesAutoresizingMaskIntoConstraints = false
 
     }
@@ -69,6 +79,12 @@ class SymbolControl: UIControl {
     private func updateSelectedSymbol() {
         for (index, button) in self.buttons.enumerated() {
             button.isSelected = groupSymbol[index].name == self.selectedSymbol
+        }
+    }
+    
+    func isSelectedButton(selectedSymbolId: Int?, isSelected: Bool) {
+        if selectedSymbolId != nil {
+            buttons[selectedSymbolId!].isSelected = isSelected
         }
     }
     
